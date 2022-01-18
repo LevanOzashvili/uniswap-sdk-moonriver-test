@@ -10,6 +10,7 @@ import {
   FACTORY_ADDRESS,
   INIT_CODE_HASH,
   INIT_CODE_HASH_MOONBASE,
+  INIT_CODE_HASH_MOONBEAM,
   MINIMUM_LIQUIDITY,
   ZERO,
   ONE,
@@ -30,17 +31,18 @@ export class Pair {
 
   public static getAddress(tokenA: Token, tokenB: Token): string {
     const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
-    console.log('tokenA chainId:', tokenA.chainId)
-    console.log('tokenB chainId: ', tokenB.chainId)
-    console.log('moonriver init code hash: ', INIT_CODE_HASH)
-    console.log('moonbase init code hash: ', INIT_CODE_HASH_MOONBASE)
+
     let initCodeHash = INIT_CODE_HASH;
-    console.log('equality: ', tokenA.chainId === ChainId.MOONBEAM)
-    console.log('chainId.MOONBASE: ', ChainId.MOONBASE)
-    if (tokenA.chainId === ChainId.MOONBASE) {
-      initCodeHash = INIT_CODE_HASH_MOONBASE
+    if (tokenA.chainId === ChainId.MOONRIVER) {
+      initCodeHash = INIT_CODE_HASH;
+    } else if (tokenA.chainId === ChainId.MOONBASE) {
+      initCodeHash = INIT_CODE_HASH_MOONBASE;
+    } else if (tokenA.chainId === ChainId.MOONBEAM) {
+      initCodeHash = INIT_CODE_HASH_MOONBEAM;
+    } else {
+      console.error('unsupported chain for init_code_hash')
     }
-    console.log('selected init code hash: ', initCodeHash)
+
     if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
       PAIR_ADDRESS_CACHE = {
         ...PAIR_ADDRESS_CACHE,
