@@ -1,5 +1,5 @@
 import JSBI from 'jsbi'
-import { factory } from './moonbase_address.json'
+import { factory, init_code_hash } from './moonbase_address.json'
 import { factory as riverFactory, init_code_hash as riverCodeHash } from './moonriver_address.json'
 
 // exports for external consumption
@@ -37,7 +37,7 @@ export const FACTORY_ADDRESS: { [key: string]: string } = {
 
 // TODO: if chain id is not moonriver, then show init_code_hash from moonbase_address.json
 export const INIT_CODE_HASH = riverCodeHash;
-
+export const INIT_CODE_HASH_MOONBASE = init_code_hash;
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
 
 // exports for internal consumption
