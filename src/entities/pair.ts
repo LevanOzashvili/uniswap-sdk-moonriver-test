@@ -32,10 +32,13 @@ export class Pair {
     const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
     console.log('tokenA chainId:', tokenA.chainId)
     console.log('tokenB chainId: ', tokenB.chainId)
+    console.log('moonriver init code hash: ', INIT_CODE_HASH)
+    console.log('moonbase init code hash: ', INIT_CODE_HASH_MOONBASE)
     let initCodeHash = INIT_CODE_HASH;
     if (tokenA.chainId === ChainId.MOONBEAM) {
       initCodeHash = INIT_CODE_HASH_MOONBASE
     }
+    console.log('selected init code hash: ', initCodeHash)
     if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
       PAIR_ADDRESS_CACHE = {
         ...PAIR_ADDRESS_CACHE,
