@@ -35,6 +35,8 @@ export class Pair {
     console.log('moonriver init code hash: ', INIT_CODE_HASH)
     console.log('moonbase init code hash: ', INIT_CODE_HASH_MOONBASE)
     let initCodeHash = INIT_CODE_HASH;
+    console.log('equality: ', tokenA.chainId === ChainId.MOONBEAM)
+    console.log('chainId.Moonbeam: ', ChainId.MOONBEAM)
     if (tokenA.chainId === ChainId.MOONBEAM) {
       initCodeHash = INIT_CODE_HASH_MOONBASE
     }
