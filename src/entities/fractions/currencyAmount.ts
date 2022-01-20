@@ -19,7 +19,7 @@ export class CurrencyAmount extends Fraction {
    * @param amount ether amount in wei
    */
   public static ether(amount: BigintIsh): CurrencyAmount {
-    return new CurrencyAmount(MOVR, amount)
+    return new CurrencyAmount(MOVR, amount) //TODO not sure if this causes problem, think there is no possibility to create currencyamount with glmr or dev based on chainId
   }
 
   // amount _must_ be raw, i.e. in the native representation
